@@ -18,7 +18,7 @@ class hosts_file::deb_hosts {
 }
 
 class hosts_file::win_hosts {
-	file {"C\windows\System32\drivers\etc\hosts" :
+	file {"C:/windows/System32/drivers/etc/hosts" :
 		ensure => present,
 		content => ('hosts_file/winhosts.erb'),
 	}
