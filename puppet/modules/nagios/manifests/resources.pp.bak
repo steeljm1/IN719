@@ -3,7 +3,8 @@ class nagios::resources {
 	nagios_host { 'db.sqrawler.com':
                  target 		=> '/etc/nagios3/conf.d/ppt_hosts.cfg',
 		 alias 			=> 'db',
-                 address 		=> '10.25.1.26',
+#                 mode                  => '0644', 
+		address 		=> '10.25.1.26',
                  check_period 		=> '24x7',
                  max_check_attempts 	=> 3,
                  check_command 		=> 'check-host-alive',
@@ -13,41 +14,13 @@ class nagios::resources {
                  contact_groups 	=> 'sysadmins',
         	 require		=> Class["nagios::install"],
 		 notify			=> Class["nagios::chmod"],
-   
+#		 notify          	=> Class["nagios::service"],     
 	}
-
-	nagios_host { 'backup.sqrawler.com':
-                 target                 => '/etc/nagios3/conf.d/ppt_hosts.cfg',
-                 alias                  => 'backup',
-                 address                 => '10.25.1.28',
-                 check_period           => '24x7',
-                 max_check_attempts     => 3,
-                 check_command          => 'check-host-alive',
-                 notification_interval  => 30,
-                 notification_period    => '24x7',
-                 notification_options   => 'd,u,r',
-                 contact_groups         => 'sysadmins',
-        }
-
-	nagios_host { 'app.sqrawler.com':
-                 target                 => '/etc/nagios3/conf.d/ppt_hosts.cfg',
-                 alias                  => 'app',
-                 address                 => '10.25.1.29',
-                 check_period           => '24x7',
-                 max_check_attempts     => 3,
-                 check_command          => 'check-host-alive',
-                 notification_interval  => 30,
-                 notification_period    => '24x7',
-                 notification_options   => 'd,u,r',
-                 contact_groups         => 'sysadmins',                 
-        }
-
-
-
  
 	 nagios_contactgroup { 'sysadmins':
-                target 		=> '/etc/nagios3/conf.d/ppt_contactgroups.cfg',
+               target 		=> '/etc/nagios3/conf.d/ppt_contactgroups.cfg',
 		alias 		=> 'Systems Administrators',
+#                mode            => '0644',
 		members 	=> 'unverzp1, steeljm1',
 			
   	}
@@ -67,6 +40,7 @@ class nagios::resources {
 	nagios_contact { 'unverzp1':
               target                            => '/etc/nagios3/conf.d/ppt_contacts.cfg',
 	      alias                             => 'Zane Unverferth',
+#	       mode                  		=> '0644',
               service_notification_period       => '24x7',
               host_notification_period          => '24x7',
               service_notification_options      => 'w,u,c,r',
@@ -79,6 +53,7 @@ class nagios::resources {
 	nagios_contact { 'steeljm1':
               target                            => '/etc/nagios3/conf.d/ppt_contacts.cfg',
 	      alias                             => 'Jay Steele',
+#	      mode                  		=> '0644',
               service_notification_period       => '24x7',
               host_notification_period          => '24x7',
               service_notification_options      => 'w,u,c,r',
@@ -96,6 +71,7 @@ class nagios::resources {
               service_description 	=> 'MySQL DB',
               hostgroup_name 		=> 'db-servers',
               target 			=> '/etc/nagios3/conf.d/ppt_mysql_service.cfg',
+#              mode                      => '0644',
 	      check_command 		=> 'check_mysql',
               max_check_attempts 	=> 3,
               retry_check_interval 	=> 1,
@@ -108,22 +84,10 @@ class nagios::resources {
   	}
 
 	nagios_hostgroup{'db-servers':
-		target 		=> '/etc/nagios3/conf.d/ppt_hostgroups.cfg',
-		alias 		=> 'Database Servers',
-                members		=> 'db.sqrawler.com',
+              target 	=> '/etc/nagios3/conf.d/ppt_hostgroups.cfg',
+		alias 	=> 'Database Servers',
+#   		 mode   => '0644',
+              members 	=> 'db.sqrawler.com',
   	}
-
-	nagios_hostgroup{'backup-server':
-              target  	=> '/etc/nagios3/conf.d/ppt_hostgroups.cfg',
-              alias   	=> 'Backup Server',
-              members 	=> 'backup.sqrawler.com',
-        }
-
-	nagios_hostgroup{'app-server':
-              target    => '/etc/nagios3/conf.d/ppt_hostgroups.cfg',
-              alias   	=> 'app Server',
-              members   => 'app.sqrawler.com',
-        }
-
 
 }

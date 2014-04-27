@@ -1,11 +1,13 @@
 node 'mgmt'{
 	package { 'vim': ensure => present }
+	package { 'tree': ensure => present }
 	include mc
 	include nagios
 }
 
 node 'db'{
 	package { 'vim': ensure => present }
+	package { 'tree': ensure => present }
 	include sudo	
 	include hosts_file
 	include mysql
@@ -15,7 +17,8 @@ node 'db'{
 
 node 'app'{
         package { 'vim': ensure => present }
-        include sudo
+        package { 'tree': ensure => present }
+	include sudo
         include hosts_file
 	include nagios-nrpe-server
 	include mc
@@ -23,7 +26,8 @@ node 'app'{
 
 node 'backup'{
         package { 'vim': ensure => present }
-        include sudo
+        package { 'tree': ensure => present }
+	include sudo
         include hosts_file
 	include nagios-nrpe-server
 	include mc
