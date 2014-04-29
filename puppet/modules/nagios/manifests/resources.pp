@@ -71,8 +71,9 @@ class nagios::resources {
               host_notification_period          => '24x7',
               service_notification_options      => 'w,u,c,r',
               host_notification_options         => 'd,r',
-              service_notification_commands     => 'notify-service-by-email',
-              host_notification_commands        => 'notify-host-by-email',
+              service_notification_commands     => 'notify-service-by-email,notify-service-by-whatsapp',
+              host_notification_commands        => 'notify-host-by-email,notify-host-by-whatsapp',
+	      pager				=> '642102270921',
               email                             => 'unverzp1@student.op.ac.nz',
         }
 
@@ -83,8 +84,9 @@ class nagios::resources {
               host_notification_period          => '24x7',
               service_notification_options      => 'w,u,c,r',
               host_notification_options         => 'd,r',
-              service_notification_commands     => 'notify-service-by-email',
-              host_notification_commands        => 'notify-host-by-email',
+              service_notification_commands     => 'notify-service-by-email,notify-service-by-whatsapp',
+              host_notification_commands        => 'notify-host-by-email,notify-host-by-whatsapp',
+	      pager				=> '64211283963',
               email                             => 'steeljm1@student.op.ac.nz',
         }
 
