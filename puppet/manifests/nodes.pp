@@ -13,6 +13,7 @@ node 'db'{
 	include mysql
 	include nagios-nrpe-server
 	include mc
+	include db_cron
 }
 
 node 'app'{
@@ -36,5 +37,7 @@ node 'backup'{
 node 'ad'{
         include hosts_file
 	include nsclient
+	include win_bacula
+
 }
 
