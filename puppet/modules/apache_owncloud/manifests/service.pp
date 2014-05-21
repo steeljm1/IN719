@@ -19,7 +19,6 @@ class apache_owncloud::service {
                   hasrestart  => true,
                   enable      => true,
                   require     => Class["apache_owncloud::config"],
-                  notify      => Class["apache_owncloud::apt"]
       }
 
 }

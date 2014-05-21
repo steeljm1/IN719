@@ -12,6 +12,6 @@
 #
 class apache_owncloud {
 
-      include apache_owncloud::install, apache_owncloud::config, apache_owncloud::service#, apache_owncloud::own_install, apache_owncloud::apt, apache_owncloud::own_config
+      include apache_owncloud::install, apache_owncloud::config, apache_owncloud::service
 
 }
