@@ -3,6 +3,7 @@ node 'mgmt'{
 	package { 'tree': ensure => present }
 	include mc
 	include nagios
+	include nix_bacula_client
 }
 
 node 'db'{
@@ -14,6 +15,7 @@ node 'db'{
 	include nagios-nrpe-server
 	include mc
 	include db_cron
+        include nix_bacula_client
 }
 
 node 'app'{
@@ -23,6 +25,7 @@ node 'app'{
         include hosts_file
 	include nagios-nrpe-server
 	include mc
+	include nix_bacula_client
 }
 
 node 'backup'{
@@ -32,6 +35,7 @@ node 'backup'{
         include hosts_file
 	include nagios-nrpe-server
 	include mc
+	include nix_bacula_client
 }
 
 node 'ad'{
