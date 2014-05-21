@@ -11,7 +11,8 @@
 # Sample Usage:
 #
 class apache_owncloud::service {
-  
+      
+      # ensure apache is running with new config then notify apt class to start owncloud install
       service { "apache2" :
                   ensure      => running,
                   hasstatus   => true,

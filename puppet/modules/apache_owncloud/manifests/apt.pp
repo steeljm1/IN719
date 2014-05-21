@@ -11,18 +11,20 @@
 # Sample Usage:
 #
 class apache_owncloud::apt {
-
+      
+      # push the script to client
       file { '/root/apt.sh':
-              ensure => present,
-              owner => 'root',
-              group => 'root',
-              mode => '0774',
-              source => 'puppet:///modules/apache_owncloud/apt.sh',
+              ensure  => present,
+              owner   => 'root',
+              group   => 'root',
+              mode    => '0774',
+              source  => 'puppet:///modules/apache_owncloud/apt.sh',
       }
 
+      # execute the script once it has been copied to client
       exec { '/root/apt.sh':  
-              require => File['/root/apt.sh'] ,
-              notify  => Class["apache_owncloud::own_install"], 
+              require   => File['/root/apt.sh'] ,
+              notify    => Class["apache_owncloud::own_install"], 
       }
 
 }

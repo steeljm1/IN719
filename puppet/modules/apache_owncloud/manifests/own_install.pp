@@ -11,7 +11,8 @@
 # Sample Usage:
 #
 class apache_owncloud::own_install {
-
+      
+      # install owncloud
       package { owncloud:
                 ensure    => present,
                 require   => Class["apache_owncloud::apt"],

@@ -11,7 +11,8 @@
 # Sample Usage:
 #
 class apache_owncloud::config {
-
+      
+      # push 000-default to client
       file {"/etc/apache2/sites-enabled/000-default":
               ensure    => present,
               owner     => "root" ,
@@ -22,7 +23,7 @@ class apache_owncloud::config {
               
       }
 
-      #run a2enmod rewrite and a2enmod headers then restart service
+      # install apache modules: a2enmod rewrite and a2enmod headers then restart service
       define apache_owncloud::loadmodule () {
                              
           exec { "/usr/sbin/a2enmod $name" :
@@ -33,4 +34,5 @@ class apache_owncloud::config {
             
       apache_owncloud::loadmodule{"rewrite": }
       apache_owncloud::loadmodule{"headers": }
+      
 }

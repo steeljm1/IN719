@@ -12,6 +12,7 @@
 #
 class apache_owncloud::install {
       
+      # install required packages 
       $prereqisites = ["apache2", "php5", "php5-gd", "php-xml-parser", "php5-intl"]
       
       package { $prereqisites :
