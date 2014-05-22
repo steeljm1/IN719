@@ -20,13 +20,10 @@ class nsclient {
 
         package {'NSClient++ (x64)':
                 ensure          => installed,
-#                source          => 'C:/puppet/NSCP-0.4.1.102-x64.msi',
 		source          => 'C:\\puppet\\NSCP-0.4.1.102-x64.msi',
-#		provider	=> 'windows',
 		require         => File['C:/puppet/NSCP-0.4.1.102-x64.msi'],
-#                install_options => ['/quiet'],
         }
-#}
+
 
 
 
