@@ -15,4 +15,5 @@ $CONFIG = array (
   'dbuser' => 'oc_root',
   'dbpassword' => 'd34d68ff0e01d0c9b8946475fae4d1',
   'installed' => true,
+  'ldapIgnoreNamingRules' => false,
 );
