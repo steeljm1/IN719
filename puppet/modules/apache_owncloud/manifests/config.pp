@@ -20,22 +20,25 @@ class apache_owncloud::config {
               mode      	=> 0644,
               source    	=> "puppet:///modules/apache_owncloud/000-default",
               require   	=> Class["apache_owncloud::install"],
-              
+              notify      => Class["apache_owncloud::service"],
       	}
 
-	# create symlink to apache headers module
-	file { "/etc/apache2/mods-enabled/headers.load":
-		ensure 		=> "link",
-		mode      	=> 0777,
-		target 		=> "/etc/apache2/mods-available/headers.load",
-	}
+	     # create symlink to apache headers module
+	     file { "/etc/apache2/mods-enabled/headers.load":
+		          ensure 		   => "link",
+		          mode         => 0777,
+		          target 		   => "/etc/apache2/mods-available/headers.load",
+		          require      => Class["apache_owncloud::install"],
+              notify       => Class["apache_owncloud::service"],
+	     }
 
-	# create symlink to apache rewrite module
-	file { "/etc/apache2/mods-enabled/rewrite.load":
-		ensure 		=> "link",
-		mode            => 0777,
-		target 		=> "/etc/apache2/mods-available/rewrite.load",
-		notify    	=> Class["apache_owncloud::service"],
-	}
+	     # create symlink to apache rewrite module
+	     file { "/etc/apache2/mods-enabled/rewrite.load":
+		          ensure 		   => "link",
+		          mode         => 0777,
+		          target 		   => "/etc/apache2/mods-available/rewrite.load",
+		          require      => Class["apache_owncloud::install"],
+		          notify       => Class["apache_owncloud::service"],
+	     }
       
 }
