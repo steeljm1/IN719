@@ -4,6 +4,8 @@ node 'mgmt'{
 	include mc
 	include nagios
 	include nix_bacula_client
+	include sudo
+	include hosts_file
 }
 
 node 'db'{
