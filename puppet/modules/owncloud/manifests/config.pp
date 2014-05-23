@@ -19,7 +19,7 @@ class owncloud::config {
               group     => "www-data",
               mode      => 0640,
               source    => "puppet:///modules/owncloud/config.php",
-              require   => Class["owncloud::own_install"],
+              require   => Class["owncloud::install"],
               notify      => Class["owncloud::service"]
       }
 
