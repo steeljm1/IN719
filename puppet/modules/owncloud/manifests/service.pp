@@ -10,15 +10,12 @@
 #
 # Sample Usage:
 #
-class owncloud::service {
-  
-      # Restart apache
-      service { "apache2" :
-                  ensure      => running,
-                  hasstatus   => true,
-                  hasrestart  => true,
-                  enable      => true,
-                  require     => Class["owncloud::config"],
-      }
+class owncloud::service inherits apache_owncloud::service {
+
+	class service {
+		class{ 'apache_owncloud::service':		
+		}
+		include owncloud::service
+	}  
 
 }

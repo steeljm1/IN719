@@ -1,31 +1,22 @@
-# Class: owncloud::apt
-#
-# This module manages owncloud
-#
-# Parameters: none
-#
-# Actions:
-#
-# Requires: see Modulefile
-#
-# Sample Usage:
-#
 class owncloud::apt {
 
-      # push the script to client
-      file { '/root/apt.sh':
-              ensure  => present,
-              owner   => 'root',
-              group   => 'root',
-              mode    =>  0770,
-              source  => 'puppet:///modules/owncloud/apt.sh',
-      }
+      	# download
+	file_line { 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community/Debian_7.0/ /':
+    		path => '/etc/apt/sources.list',
+    		line => 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community/Debian_7.0/ /'
+	}
 
-      # execute the script once it has been copied to client
-      exec { '/root/apt.sh':
-                command =>  "/bin/bash /root/apt.sh",
-                require   => File["/root/apt.sh"],
-                notify    => Class["owncloud::install"],
-      }
+	exec { "wget http://download.opensuse.org/repositories/isv:ownCloud:community/Debian_7.0/Release.key":
+    		path => ["/usr/bin", "/usr/sbin"]
+	}
+
+	exec {"add-key":
+		command => "/usr/bin/apt-key add Release.key",
+	}
+
+	exec { "apt-get update":
+    		command => "/usr/bin/apt-get update",
+    	onlyif => "/bin/sh -c '[ ! -f /var/cache/apt/pkgcache.bin ] || /usr/bin/find /etc/apt/* -cnewer /var/cache/apt/pkgcache.bin | /bin/grep . > /dev/null'",
+	}
 
 }
