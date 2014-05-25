@@ -14,5 +14,5 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
 52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
 
-20 1 * * * mysqldump -u root -p ZaneJay2014 --all-databases --add-drop-table > /home/bacula/db-backup.sql || ( cd / && run-parts --report /etc/cron.daily )
+20 1 * * * mysqldump -u root -pZaneJay2014 --all-databases --add-drop-table > /home/bacula/db-backup.sql || ( cd / && run-parts --report /etc/cron.daily )
 #
