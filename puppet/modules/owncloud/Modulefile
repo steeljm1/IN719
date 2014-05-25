@@ -1,0 +1,12 @@
+name    'jay-owncloud'
+version '0.1.0'
+source ''
+author ''
+license ''
+summary ''
+description 'This module depends on "jay/apache_owncloud" module.'
+project_page ''
+
+## Add dependencies, if any:
+# dependency 'username/name', '>= 1.2.0'
+dependency 'jay/apache_owncloud', '0.1.0'
