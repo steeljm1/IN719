@@ -122,26 +122,27 @@ Job {
 }
 
 # Backup Server
-# Job for backup-fd backup
+# Job for backup-fd
 
 Job {
-  Name = "backupServer-Full"
+  Name = "backup-Full"
   Client = backup-fd
-  FileSet="backupServer"
+  FileSet="backup"
   Level = Full
+Job {
+  Name = "mgmt-Incremental"
+  Client = mgmt-fd
+  FileSet="mgmt"
   Schedule = "WeeklyCycle"
   JobDefs = "DefaultJob"
   Where = /home/bacula/restores
 }
 
-Job {
-  Name = "backupServer-Incremental"
-  Client = backupServer-fd
-  FileSet="backupServer"
   Schedule = "WeeklyCycle"
   JobDefs = "DefaultJob"
   Where = /home/bacula/restores
 }
+
 
 
 # Application Server
@@ -300,9 +301,9 @@ FileSet {
   }
 }
 
-# This is the backup of app-fd fileset
+#This is the backup of backup-fd fileset
 FileSet {
-  Name = "app"
+  Name ="backup
   Include {
     Options {
       signature = MD5
@@ -313,9 +314,9 @@ FileSet {
   }
 }
 
-# This is the backup of backup-fd
+# This is the backup of app-fd fileset
 FileSet {
-  Name = "backupServer"
+  Name = "app"
   Include {
     Options {
       signature = MD5
@@ -391,23 +392,21 @@ Client {
   AutoPrune = yes                     # Prune expired Jobs/Files
 }
 
-#App client
 Client {
-  Name = app-fd
-  Address = 10.25.1.29
+  Name = backup-fd
+  Address = 127.0.0.1
   FDPort = 9102
   Catalog = MyCatalog
-  Password = "ZaneJay2014"         # password for FileDaemon 2
+  Password = "ZaneJay2014"
   File Retention = 30 days            # 30 days
   Job Retention = 6 months            # six months
   AutoPrune = yes                     # Prune expired Jobs/Files
 }
-
-#Backup client
-
+ 
+#App client
 Client {
-  Name = backupServer-fd
-  Address = 10.25.1.28
+  Name = app-fd
+  Address = 10.25.1.29
   FDPort = 9102
   Catalog = MyCatalog
   Password = "ZaneJay2014"         # password for FileDaemon 2

@@ -103,10 +103,9 @@ Job {
 # Management Server
 # Job for mgmt-fd backup
 Job {
-  Name = "mgmt-Full"
+  Name = "mgmt"
   Client = mgmt-fd
   FileSet="mgmt"
-  Level = Full
   Schedule = "WeeklyCycle"
   JobDefs = "DefaultJob"
   Where = /home/bacula/restores
@@ -121,65 +120,22 @@ Job {
   Where = /home/bacula/restores
 }
 
-# Backup Server
-# Job for backup-fd backup
-
-Job {
-  Name = "backupServer-Full"
-  Client = backup-fd
-  FileSet="backupServer"
-  Level = Full
-  Schedule = "WeeklyCycle"
-  JobDefs = "DefaultJob"
-  Where = /home/bacula/restores
-}
-
-Job {
-  Name = "backupServer-Incremental"
-  Client = backupServer-fd
-  FileSet="backupServer"
-  Schedule = "WeeklyCycle"
-  JobDefs = "DefaultJob"
-  Where = /home/bacula/restores
-}
-
 
 # Application Server
 # Job for app-fd backup
 Job {
-  Name = "app-Full"
-  Client = app-fd
-  FileSet="app"
-  Level = Full
-  Schedule = "WeeklyCycle"
-  JobDefs = "DefaultJob"
-  Where = /home/bacula/restores
-}
-
-Job {
-  Name = "app-Incremental"
+  Name = "app"
   Client = app-fd
   FileSet="app"
   Schedule = "WeeklyCycle"
   JobDefs = "DefaultJob"
   Where = /home/bacula/restores
 }
-
 
 # Database Server
 # Job for db-fd backup
 Job {
-  Name = "db-Full"
-  Client = db-fd
-  FileSet="db"
-  Level = Full
-  Schedule = "WeeklyCycle"
-  JobDefs = "DefaultJob"
-  Where = /home/bacula/restores
-}
-
-Job {
-  Name = "db-Incremental"
+  Name = "db"
   Client = db-fd
   FileSet="db"
   Schedule = "WeeklyCycle"
@@ -313,19 +269,6 @@ FileSet {
   }
 }
 
-# This is the backup of backup-fd
-FileSet {
-  Name = "backupServer"
-  Include {
-    Options {
-      signature = MD5
-    }
-# Directories to backup
-    File = "/etc"
-#    File = "/home/steeljm1/test_backup.txt"
-  }
-}
-
 # This is the backup of db-fd fileset
 FileSet {
   Name = "db"
@@ -395,19 +338,6 @@ Client {
 Client {
   Name = app-fd
   Address = 10.25.1.29
-  FDPort = 9102
-  Catalog = MyCatalog
-  Password = "ZaneJay2014"         # password for FileDaemon 2
-  File Retention = 30 days            # 30 days
-  Job Retention = 6 months            # six months
-  AutoPrune = yes                     # Prune expired Jobs/Files
-}
-
-#Backup client
-
-Client {
-  Name = backupServer-fd
-  Address = 10.25.1.28
   FDPort = 9102
   Catalog = MyCatalog
   Password = "ZaneJay2014"         # password for FileDaemon 2
