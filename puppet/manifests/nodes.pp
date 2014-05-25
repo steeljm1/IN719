@@ -1,6 +1,7 @@
 node 'mgmt'{
 	package { 'vim': ensure => present }
 	package { 'tree': ensure => present }
+	package { 'ruby-shadow': ensure => present }
 	include mc
 	include nagios
 	include nix_bacula_client
@@ -10,6 +11,7 @@ node 'mgmt'{
 }
 
 node 'db'{
+	package { 'ruby-shadow': ensure => present }
 	include users
 	package { 'vim': ensure => present }
 	package { 'tree': ensure => present }
@@ -23,6 +25,7 @@ node 'db'{
 }
 
 node 'app'{
+	package { 'ruby-shadow': ensure => present }
 	include users
         package { 'vim': ensure => present }
         package { 'tree': ensure => present }
@@ -36,6 +39,7 @@ node 'app'{
 }
 
 node 'backup'{
+	package { 'ruby-shadow': ensure => present }
 	include users
         package { 'vim': ensure => present }
         package { 'tree': ensure => present }
