@@ -70,7 +70,7 @@ usage(){
 simple=""
 mandatory_users=""
 unauthorized_users=""
-whitelist_users=""
+whitelist_users="root,steeljm1,unverzp1"
 
 while [ "$#" -ge 1 ]; do
     case "$1" in
